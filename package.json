@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/erfanveisi2/project-maagement#readme",
   "dependencies": {
+    "@apollo/server": "^4.9.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

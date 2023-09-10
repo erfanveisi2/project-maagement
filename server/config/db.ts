@@ -1,5 +1,3 @@
-import { cyan } from "colors";
-
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
@@ -7,7 +5,7 @@ const connectDB = async () => {
 
   if (conn) {
     console.log(
-      `MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold
+      `MongoDB Connected: ${conn.connection.host}`.bgGreen.underline.bold
     );
   } else {
     console.log("MongoDB Not Connected");
