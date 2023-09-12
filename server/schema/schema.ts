@@ -9,6 +9,7 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLNonNull,
+  GraphQLEnumType,
 } from "graphql";
 
 //client Type
@@ -32,8 +33,8 @@ const ProjectType = new GraphQLObjectType({
     status: { type: GraphQLString },
     client: {
       type: ClientType,
-      resolve(parent, args) {
-        return Client.findById(parent.clientId);
+      async resolve(parent, args) {
+        return await Client.findById(parent.clientId);
       },
     },
   }),
@@ -99,6 +100,28 @@ const mutations = new GraphQLObjectType({
         return await Client.findByIdAndRemove(args.id);
       },
     },
+    updateClient: {
+      type: ClientType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        return await Client.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              email: args.email,
+              phone: args.phone,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
     addProject: {
       type: ProjectType,
       args: {
@@ -110,8 +133,18 @@ const mutations = new GraphQLObjectType({
         const project = new Project({
           name: args.name,
           description: args.description,
-          status: args.status,
           clientId: args.clientId,
+          status: {
+            type: new GraphQLEnumType({
+              name: "ProjectStatus",
+              values: {
+                new: { value: "Not Started" },
+                progress: { value: "In Progress" },
+                completed: { value: "Completed" },
+              },
+            }),
+            defaultValue: "Not Started",
+          },
         });
         return project.save();
       },
