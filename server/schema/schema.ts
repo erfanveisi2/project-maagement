@@ -100,6 +100,7 @@ const mutations = new GraphQLObjectType({
         return await Client.findByIdAndRemove(args.id);
       },
     },
+    //should fix this mutation
     updateClient: {
       type: ClientType,
       args: {
