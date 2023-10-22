@@ -100,7 +100,6 @@ const mutations = new GraphQLObjectType({
         return await Client.findByIdAndRemove(args.id);
       },
     },
-    //should fix this mutation
     updateClient: {
       type: ClientType,
       args: {
@@ -157,6 +156,35 @@ const mutations = new GraphQLObjectType({
       },
       async resolve(parent, args) {
         return await Project.findByIdAndRemove(args.id);
+      },
+    },
+    updateProject: {
+      type: ClientType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        status: {
+          type: new GraphQLEnumType({
+            name: "ProjectStatus",
+            values: {
+              new: { value: "Not Started" },
+              progress: { value: "In Progress" },
+              completed: { value: "Completed" },
+            },
+          }),
+          defaultValue: "Not Started",
+        },
+      },
+      resolve(parent, args) {
+        args.id,
+          {
+            $set: {
+              name: args.name,
+              description: args.description,
+              status: args.status,
+            },
+          };
       },
     },
   },
