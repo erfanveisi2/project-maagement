@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+import { Color } from "colors";
 
 const connectDB = async () => {
   const conn = await mongoose.connect(process.env.MONGO_URI);
