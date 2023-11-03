@@ -128,23 +128,14 @@ const mutations = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: new GraphQLNonNull(GraphQLString) },
         status: { type: new GraphQLNonNull(GraphQLString) },
+        clientId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         const project = new Project({
           name: args.name,
           description: args.description,
-          clientId: args.clientId,
-          status: {
-            type: new GraphQLEnumType({
-              name: "ProjectStatus",
-              values: {
-                new: { value: "Not Started" },
-                progress: { value: "In Progress" },
-                completed: { value: "Completed" },
-              },
-            }),
-            defaultValue: "Not Started",
-          },
+          status: args.status,
+          clientId: args.client,
         });
         return project.save();
       },
@@ -159,38 +150,31 @@ const mutations = new GraphQLObjectType({
       },
     },
     updateProject: {
-      type: ClientType,
+      type: ProjectType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
         name: { type: GraphQLString },
         description: { type: GraphQLString },
-        status: {
-          type: new GraphQLEnumType({
-            name: "ProjectStatus",
-            values: {
-              new: { value: "Not Started" },
-              progress: { value: "In Progress" },
-              completed: { value: "Completed" },
-            },
-          }),
-          defaultValue: "Not Started",
-        },
+        status: { type: GraphQLString },
       },
-      resolve(parent, args) {
-        args.id,
+      async resolve(parent, args) {
+        return await Project.findByIdAndUpdate(
+          args.id,
           {
             $set: {
               name: args.name,
               description: args.description,
               status: args.status,
             },
-          };
+          },
+          { new: true }
+        );
       },
     },
   },
 });
 
-module.exports = new GraphQLSchema({
+export default new GraphQLSchema({
   query: query,
   mutation: mutations,
 });

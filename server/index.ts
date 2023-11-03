@@ -5,7 +5,7 @@ import { cyan } from "colors";
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const colors = require("colors");
-const schema = require("./schema/schema");
+import schema from "./schema/schema";
 const connectDB = require("./config/db");
 require("dotenv").config();
 
