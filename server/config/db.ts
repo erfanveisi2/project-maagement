@@ -1,8 +1,7 @@
-const mongoose = require("mongoose");
-import { Color } from "colors";
+import mongoose from "mongoose";
 
 const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI);
+  const conn = await mongoose.connect(`${process.env.MONGO_URI}`);
 
   if (conn) {
     console.log(

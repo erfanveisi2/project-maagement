@@ -9,7 +9,6 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLNonNull,
-  GraphQLEnumType,
 } from "graphql";
 
 //client Type
@@ -128,7 +127,7 @@ const mutations = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: new GraphQLNonNull(GraphQLString) },
         status: { type: new GraphQLNonNull(GraphQLString) },
-        clientId: { type: new GraphQLNonNull(GraphQLID) },
+        clientId: { type: GraphQLID },
       },
       resolve(parent, args) {
         const project = new Project({
@@ -156,6 +155,7 @@ const mutations = new GraphQLObjectType({
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         status: { type: GraphQLString },
+        clientId: { type: new GraphQLNonNull(GraphQLID) },
       },
       async resolve(parent, args) {
         return await Project.findByIdAndUpdate(
@@ -165,6 +165,7 @@ const mutations = new GraphQLObjectType({
               name: args.name,
               description: args.description,
               status: args.status,
+              clientId: args.clientId,
             },
           },
           { new: true }

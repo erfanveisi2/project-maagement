@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { cyan } from "colors";
+import cyan from "colors";
 
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
@@ -22,7 +22,7 @@ async function main() {
     context: async ({ req }) => ({ token: req.headers.token }),
     listen: { port: 5000 },
   });
-  console.log(`Server is listening at : ${url}`.cyan.underline.bold);
+  console.log(`Server is listening at : ${url}`.bgCyan.underline.bold);
 }
 
 main();
