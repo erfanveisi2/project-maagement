@@ -1,12 +1,16 @@
 import React from 'react';
-import { AiFillApple } from "react-icons/ai";
 import './App.css';
+import Header from './components/header';
 
 function App() {
   return (
+    <>
+    <Header/>
     <div className="App">
-      <h1>Project management</h1>
+
     </div>
+    </>
+
   );
 }
 
