@@ -1,14 +1,27 @@
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import ADD_CLIENT from "../mutations/addClient";
+import GET_CLIENTS from "../queries/clientQueries";
 
 export function AddClientModal() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
+  const [addClient] = useMutation(ADD_CLIENT, {
+    variables: { name, email, phone },
+    refetchQueries: [{ query: GET_CLIENTS }],
+  });
+
   const onSubmit = (e: any) => {
     e.preventDefault();
-    console.log(name, email, phone);
+
+    if (name === "" || email === "" || phone === "") {
+      return alert("Please fill in all fields");
+    }
+
+    addClient();
   };
 
   return (
