@@ -22,6 +22,9 @@ export function AddClientModal() {
     }
 
     addClient();
+    setName("");
+    setEmail("");
+    setPhone("");
   };
 
   return (
