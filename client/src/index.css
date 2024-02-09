@@ -48,3 +48,7 @@ code {
 .icon {
   margin-right: 5px;
 }
+.margin-top-right {
+  margin-top: 10px;
+  padding-right: 10px;
+}

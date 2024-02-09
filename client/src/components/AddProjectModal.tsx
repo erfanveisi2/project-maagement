@@ -31,7 +31,7 @@ export function AddProjectModal() {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-primary d-block"
         data-bs-toggle="modal"
         data-bs-target="#AddProjectModal"
       >
@@ -85,9 +85,10 @@ export function AddProjectModal() {
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                   >
+                    <option value="" />
                     <option value="Not Started">Not Started</option>
                     <option value="In Progress">In Progress</option>
-                    <option value="Complete">Complete</option>
+                    <option value="Completed">Completed</option>
                   </select>
                 </div>
                 <button

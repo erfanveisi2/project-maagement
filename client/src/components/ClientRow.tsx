@@ -1,4 +1,3 @@
-import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import DELETE_CLIENT from "../mutations/removeClient";
