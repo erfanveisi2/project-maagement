@@ -1,6 +1,14 @@
+import { useMutation } from "@apollo/client";
 import "../index.css";
+import DELETE_PROJECT from "../mutations/removeProject";
+import { FaTrash } from "react-icons/fa";
+import GET_PROJECTS from "../queries/projectQueries";
 
 export default function ProjectCard({ project }: { project: any }) {
+  const [deleteProject] = useMutation(DELETE_PROJECT, {
+    variables: { id: project.id },
+    refetchQueries: [{ query: GET_PROJECTS }],
+  });
   return (
     <div className="col-md-6 d-inline-block margin-top-right">
       <div className="card mb-">
@@ -11,6 +19,12 @@ export default function ProjectCard({ project }: { project: any }) {
           <p className="small">
             Status: <strong>{project.status}</strong>
           </p>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={deleteProject as any}
+          >
+            <FaTrash />
+          </button>
         </div>
       </div>
     </div>
