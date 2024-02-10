@@ -19,6 +19,7 @@ export default function ProjectCard({ project }: { project: any }) {
           <p className="small">
             Status: <strong>{project.status}</strong>
           </p>
+          <p>{project.description}</p>
           <button
             className="btn btn-danger btn-sm"
             onClick={deleteProject as any}
