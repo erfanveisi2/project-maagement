@@ -20,12 +20,15 @@ export default function ProjectCard({ project }: { project: any }) {
             Status: <strong>{project.status}</strong>
           </p>
           <p>{project.description}</p>
-          <button
-            className="btn btn-danger btn-sm"
-            onClick={deleteProject as any}
-          >
-            <FaTrash />
-          </button>
+          <div className="d-flex justify-content-between">
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={deleteProject as any}
+            >
+              <FaTrash />
+            </button>
+            <button className="btn btn-secondary">Edit</button>
+          </div>
         </div>
       </div>
     </div>
