@@ -14,6 +14,9 @@ function ClientRow({ client }: { client: any }) {
       <td>{client.phone}</td>
       <td>{client.email}</td>
       <td>
+        <button className="btn btn-sm btn btn-secondary ">Edit</button>
+      </td>
+      <td>
         <button className="btn btn-danger btn-sm" onClick={deleteClient as any}>
           <FaTrash />
         </button>
