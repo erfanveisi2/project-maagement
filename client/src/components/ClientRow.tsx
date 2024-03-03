@@ -2,6 +2,7 @@ import { FaTrash } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import DELETE_CLIENT from "../mutations/removeClient";
 import GET_CLIENTS from "../queries/clientQueries";
+import { EditClientModal } from "./EditClientModal";
 
 function ClientRow({ client }: { client: any }) {
   const [deleteClient] = useMutation(DELETE_CLIENT, {
@@ -14,7 +15,7 @@ function ClientRow({ client }: { client: any }) {
       <td>{client.phone}</td>
       <td>{client.email}</td>
       <td>
-        <button className="btn btn-sm btn btn-secondary ">Edit</button>
+        <EditClientModal />
       </td>
       <td>
         <button className="btn btn-danger btn-sm" onClick={deleteClient as any}>
