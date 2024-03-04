@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { AddProjectModal } from "./AddProjectModal";
 import Header from "./header";
-import GET_PROJECTS from "../queries/projectQueries";
+import { GET_PROJECTS } from "../queries/projectQueries";
 import Spinner from "./Spinner";
 import ProjectCard from "./ProjectCard";
 
