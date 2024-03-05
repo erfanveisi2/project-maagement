@@ -22,7 +22,7 @@ const ProjectType = new GraphQLObjectType({
     client: {
       type: ClientType,
       async resolve(parent, args) {
-        return await Client.findById(parent.id);
+        return await Client.findById(parent.clientId);
       },
     },
   }),
@@ -83,14 +83,14 @@ const mutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
         phone: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parent, args) {
+      async resolve(parent, args) {
         const client = new Client({
           name: args.name,
           email: args.email,
           phone: args.phone,
         });
 
-        return client.save();
+        return await client.save();
       },
     },
     // Delete a client
@@ -99,14 +99,14 @@ const mutation = new GraphQLObjectType({
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
-      resolve(parent, args) {
+      async resolve(parent, args) {
         Project.find({ clientId: args.id }).then((projects) => {
           projects.forEach((project) => {
             project.deleteOne();
           });
         });
 
-        return Client.findByIdAndRemove(args.id);
+        return await Client.findByIdAndRemove(args.id);
       },
     },
     // Add a project
