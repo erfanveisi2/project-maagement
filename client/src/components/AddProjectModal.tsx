@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "../queries/projectQueries";
 import ADD_PROJECT from "../mutations/addProject";
-import GET_CLIENTS from "../queries/clientQueries";
+import { GET_CLIENTS } from "../queries/clientQueries";
 
 export function AddProjectModal() {
   const [name, setName] = useState("");
