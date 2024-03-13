@@ -20,7 +20,7 @@ export function AddProjectModal() {
   const onSubmit = (e: any) => {
     e.preventDefault();
 
-    if (name === "" || description === "") {
+    if (name === "" || description === "" || clientId === "" || status === "") {
       return alert("Please fill in all fields");
     }
 
@@ -94,7 +94,7 @@ export function AddProjectModal() {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value="" />
+                        <option value="">Select Status</option>
                         <option value="Not Started">Not Started</option>
                         <option value="In Progress">In Progress</option>
                         <option value="Completed">Completed</option>

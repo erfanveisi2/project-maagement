@@ -23,7 +23,6 @@ export default function ProjectCard({ project }: { project: any }) {
           <p className="small">
             Status: <strong>{project.status}</strong>
           </p>
-          <p>{project.description}</p>
           <div className="d-flex justify-content-between">
             <button
               className="btn btn-danger btn-sm"
