@@ -148,8 +148,8 @@ const mutation = new GraphQLObjectType({
         description: { type: GraphQLString },
         status: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parent, args) {
-        return Project.findByIdAndUpdate(
+      async resolve(parent, args) {
+        return await Project.findByIdAndUpdate(
           args.id,
           {
             $set: {

@@ -78,10 +78,9 @@ export function AddProjectModal() {
                     </div>
                     <div className="mb-3">
                       <label className="form-label">description</label>
-                      <input
-                        type="text"
+                      <textarea
                         className="form-control"
-                        id="name"
+                        id="description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                       />

@@ -3,7 +3,6 @@ import "../index.css";
 import DELETE_PROJECT from "../mutations/removeProject";
 import { FaTrash } from "react-icons/fa";
 import { GET_PROJECTS } from "../queries/projectQueries";
-import { EditProjectModal } from "./EditProjectModal";
 
 export default function ProjectCard({ project }: { project: any }) {
   const [deleteProject] = useMutation(DELETE_PROJECT, {
@@ -30,7 +29,6 @@ export default function ProjectCard({ project }: { project: any }) {
             >
               <FaTrash />
             </button>
-            <EditProjectModal />
           </div>
         </div>
       </div>
