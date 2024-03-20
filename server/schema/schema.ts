@@ -8,7 +8,6 @@ import {
   GraphQLSchema,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLEnumType,
 } from "graphql";
 
 // Project Type
@@ -107,6 +106,29 @@ const mutation = new GraphQLObjectType({
         });
 
         return await Client.findByIdAndRemove(args.id);
+      },
+    },
+    // Update a client
+    updateClient: {
+      type: ClientType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        return await Client.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              email: args.email,
+              phone: args.phone,
+            },
+          },
+          { new: true }
+        );
       },
     },
     // Add a project
