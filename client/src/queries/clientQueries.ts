@@ -11,4 +11,15 @@ const GET_CLIENTS = gql`
   }
 `;
 
-export { GET_CLIENTS };
+const GET_CLIENT = gql`
+  query getClient($id: ID!) {
+    client(id: $id) {
+      id
+      name
+      phone
+      email
+    }
+  }
+`;
+
+export { GET_CLIENTS, GET_CLIENT };

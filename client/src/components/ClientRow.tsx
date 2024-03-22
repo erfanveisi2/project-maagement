@@ -15,7 +15,7 @@ function ClientRow({ client }: { client: any }) {
       <td>{client.phone}</td>
       <td>{client.email}</td>
       <td>
-        <EditClientModal />
+        <EditClientModal client={client} />
       </td>
       <td>
         <button className="btn btn-danger btn-sm" onClick={deleteClient as any}>
