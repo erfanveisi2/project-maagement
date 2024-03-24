@@ -1,15 +1,15 @@
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import ADD_CLIENT from "../mutations/addClient";
 import { GET_CLIENTS } from "../queries/clientQueries";
+import { AddClientDocument } from "../gql-codegen/graphql";
 
 export function AddClientModal() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const [addClient] = useMutation(ADD_CLIENT, {
+  const [addClient] = useMutation(AddClientDocument, {
     variables: { name, email, phone },
     refetchQueries: [{ query: GET_CLIENTS }],
   });

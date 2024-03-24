@@ -1,0 +1,8 @@
+mutation addClient($name: String!, $phone: String!, $email: String!) {
+  addClient(name: $name, phone: $phone, email: $email) {
+    id
+    name
+    email
+    phone
+  }
+}
