@@ -1,9 +1,9 @@
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_PROJECTS } from "../queries/projectQueries";
-import ADD_PROJECT from "../mutations/addProject";
-import { GET_CLIENTS } from "../queries/clientQueries";
+import { GET_PROJECTS } from "../graphql/queries/projectQueries";
+import { GET_CLIENTS } from "../graphql/queries/clientQueries";
+import { AddProjectDocument } from "../gql-codegen/graphql";
 
 export function AddProjectModal() {
   const [name, setName] = useState("");
@@ -12,7 +12,7 @@ export function AddProjectModal() {
   const [clientId, setClientId] = useState("");
 
   const { loading, error, data } = useQuery(GET_CLIENTS);
-  const [addProject] = useMutation(ADD_PROJECT, {
+  const [addProject] = useMutation(AddProjectDocument, {
     variables: { name, description, status, clientId },
     refetchQueries: [{ query: GET_PROJECTS }],
   });

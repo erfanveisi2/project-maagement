@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import ClientRow from "./ClientRow";
-import { GET_CLIENTS } from "../queries/clientQueries";
+import { GET_CLIENTS } from "../graphql/queries/clientQueries";
 import Spinner from "./Spinner";
 import { AddClientModal } from "./AddClientModal";
 import Header from "./header";

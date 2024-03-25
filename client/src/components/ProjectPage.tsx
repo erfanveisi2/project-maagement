@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import ClientInfo from "../components/ClientInfo";
 import { useQuery } from "@apollo/client";
-import { GET_PROJECT } from "../queries/projectQueries";
+import { GET_PROJECT } from "../graphql/queries/projectQueries";
 import EditProjectForm from "./EditProjectModal";
 
 export function ProjectPage() {

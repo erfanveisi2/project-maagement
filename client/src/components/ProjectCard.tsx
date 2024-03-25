@@ -1,11 +1,11 @@
 import { useMutation } from "@apollo/client";
 import "../index.css";
-import DELETE_PROJECT from "../mutations/removeProject";
 import { FaTrash } from "react-icons/fa";
-import { GET_PROJECTS } from "../queries/projectQueries";
+import { GET_PROJECTS } from "../graphql/queries/projectQueries";
+import { RemoveProjectDocument } from "../gql-codegen/graphql";
 
 export default function ProjectCard({ project }: { project: any }) {
-  const [deleteProject] = useMutation(DELETE_PROJECT, {
+  const [deleteProject] = useMutation(RemoveProjectDocument, {
     variables: { id: project.id },
     refetchQueries: [{ query: GET_PROJECTS }],
   });

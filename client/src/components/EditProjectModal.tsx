@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_PROJECT } from "../queries/projectQueries";
-import UPDATE_PROJECT from "../mutations/updateProject";
-import { GET_CLIENTS } from "../queries/clientQueries";
+import { GET_PROJECT } from "../graphql/queries/projectQueries";
+import { GET_CLIENTS } from "../graphql/queries/clientQueries";
+import { UpdateProjectDocument } from "../gql-codegen/graphql";
 
 export default function EditProjectForm({ project }: { project: any }) {
   const [name, setName] = useState(project.name);
@@ -11,7 +11,7 @@ export default function EditProjectForm({ project }: { project: any }) {
   const [clientId, setClientId] = useState(project.client.id);
 
   const { loading, error, data } = useQuery(GET_CLIENTS);
-  const [updateProject] = useMutation(UPDATE_PROJECT, {
+  const [updateProject] = useMutation(UpdateProjectDocument, {
     variables: {
       id: project.id,
       name,

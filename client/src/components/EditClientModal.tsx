@@ -1,16 +1,20 @@
 import { useState } from "react";
-import UPDATE_CLIENT from "../mutations/updateClient";
 import { useMutation } from "@apollo/client";
-import { GET_CLIENT } from "../queries/clientQueries";
+import {
+  GetClientDocument,
+  UpdateClientDocument,
+} from "../gql-codegen/graphql";
 
 export function EditClientModal({ client }: { client: any }) {
   const [name, setName] = useState(client.name);
   const [email, setEmail] = useState(client.email);
   const [phone, setPhone] = useState(client.phone);
 
-  const [updateClient] = useMutation(UPDATE_CLIENT, {
+  const [updateClient] = useMutation(UpdateClientDocument, {
     variables: { id: client.id, name, phone, email },
-    refetchQueries: [{ query: GET_CLIENT, variables: { id: client.id } }],
+    refetchQueries: [
+      { query: GetClientDocument, variables: { id: client.id } },
+    ],
   });
   const onSubmit = (e: any) => {
     e.preventDefault();

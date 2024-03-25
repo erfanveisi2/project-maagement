@@ -1,7 +1,7 @@
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { GET_CLIENTS } from "../queries/clientQueries";
+import { GET_CLIENTS } from "../graphql/queries/clientQueries";
 import { AddClientDocument } from "../gql-codegen/graphql";
 
 export function AddClientModal() {
